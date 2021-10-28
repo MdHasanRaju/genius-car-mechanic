@@ -5,7 +5,9 @@ const cors = require('cors');
 require("dotenv").config();;
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
+
+// genius car mechanic module 61 server
 
 // middleware
 app.use(cors());
@@ -48,6 +50,7 @@ async function run() {
         // DELETE API
         app.delete('/services/:id', async(req, res) => {
             const id = req.params.id;
+            console.log('Service id ', id)
             const query = { _id: ObjectId(id) };
             const result = await servicesCollection.deleteOne(query);
             console.log('deleted id is', result);
